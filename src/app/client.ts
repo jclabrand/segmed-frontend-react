@@ -10,7 +10,21 @@ import { TUser } from './types'
 
 
 export const userState = makeVar<TUser>(getDefaultUser())
+export const authState = makeVar(getAuth())
 
+
+export function getAuth() {
+	return {
+		bearer: localStorage.getItem('bearer'),
+		token: localStorage.getItem('authorization')
+	}
+}
+
+export function setAuth(data: { bearer: string, token: string }) {
+	localStorage.setItem('bearer', data.bearer)
+	localStorage.setItem('authorization', data.token)
+	authState(data)
+}
 
 export function getDefaultUser(): TUser {
 	return {
