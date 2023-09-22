@@ -4,6 +4,9 @@
  */
 
 
+import SignIn from '../modules/account/signin/signin'
+
+
 export function Guest() {
 
 	return (
@@ -12,7 +15,8 @@ export function Guest() {
 
 			</header>
 			<main>
-				<div>Seguro médico</div>
+				<div>Invitado - Seguro médico</div>
+				<SignIn />
 			</main>
 		</>
 	)
