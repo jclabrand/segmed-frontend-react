@@ -5,10 +5,13 @@
 
 
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import { gql, useMutation, useReactiveVar, ApolloError } from '@apollo/client'
 
-import { authState, userState, setAuth, getDefaultUser } from '../app/client'
 import { Error } from '../utils'
+import { authState, userState, setAuth, getDefaultUser } from '../app/client'
+import { Home, NotFound } from '../modules/basic'
+import { Users } from '../modules/settings'
 
 
 function useAuthorized() {
@@ -50,6 +53,16 @@ function Authorized() {
 				</div>
 				
 				<button onClick={ signOut }>Cerrar sesión</button>
+
+				<Routes>
+					<Route path="/" element={ <Home/> } />
+
+					<Route path="configuracion">
+						<Route path="usuarios" element={ <Users/> } />
+					</Route>
+
+					<Route path="*" element={ <NotFound/> } />
+				</Routes>
 
 				{ loading && <div>Loading...</div>}
 				{ error.has && <div>{ error.message }</div>}
