@@ -5,9 +5,16 @@
 
 
 export type TUser = {
+	id:				string
 	userName:		string
 	displayName?:	string
 	email?:			string
 
 	isAuthorized:	boolean
+}
+
+export type TSubscriptionData<TSubscriptionResult> = {
+	subscriptionData: {
+		data?: TSubscriptionResult
+	}
 }
