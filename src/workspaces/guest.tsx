@@ -4,7 +4,10 @@
  */
 
 
-import SignIn from '../modules/account/signin/signin'
+import { Routes, Route } from 'react-router-dom'
+
+import { Home, NotFound } from '../modules/basic'
+import { SignIn } from '../modules/account'
 
 
 export function Guest() {
@@ -16,6 +19,13 @@ export function Guest() {
 			</header>
 			<main>
 				<div>Invitado - Seguro médico</div>
+
+				<Routes>
+					<Route path="/" element={ <Home/> } />
+
+					<Route path="*" element={ <NotFound/> } />
+				</Routes>
+
 				<SignIn />
 			</main>
 		</>
