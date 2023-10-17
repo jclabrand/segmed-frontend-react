@@ -1,0 +1,44 @@
+
+/*	Copyright (C) 2023, All Rights Reserved
+ *	Written by Juan Carlos Labrandero <jcharly@labrandero.com>
+ */
+
+
+nav .navbar ul.nav-menu li {
+	margin: 0 0.4rem;
+}
+
+nav .navbar ul.nav-menu li a {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+nav .navbar ul.nav-menu li a:hover {
+	background-color: rgba(255, 255, 255, 0.145);
+}
+nav .navbar ul.nav-menu li a:active {
+	background-color: rgb(19, 80, 159);
+}
+
+
+nav .navbar ul.nav-menu li a.nav-link {
+	color: white;
+	border-radius: 50%;
+
+	padding: 0.2rem 0.3rem;
+}
+nav .navbar ul.nav-menu li a.nav-link svg {
+	height: 1.8rem;
+	fill: white;
+}
+
+
+nav .navbar ul.nav-menu li a.nav-link-text {
+	color: white;
+	font-size: 15px;
+	border: 1px solid #b1b8c5;
+	border-radius: 15px;
+	height: 30px;
+	padding: 0 0.8rem;
+}

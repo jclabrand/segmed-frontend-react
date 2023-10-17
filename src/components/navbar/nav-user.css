@@ -1,0 +1,72 @@
+
+/*	Copyright (C) 2023, All Rights Reserved
+ *	Written by Juan Carlos Labrandero <jcharly@labrandero.com>
+ */
+
+
+nav .navbar ul.nav-menu li .nav-user {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	background-color: lightgrey;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+nav .navbar ul.nav-menu li .nav-user-menu {
+	display: none;
+}
+
+nav .navbar ul.nav-menu li .nav-user-menu-visible {
+	display: block;
+	position: absolute;
+	right: 0.6rem;
+	top: 46px;
+	background-color: white;
+	box-shadow: 2px 2px 10px 1px rgba(0,0,0,0.3);
+	border: 1px solid lightgrey;
+	border-radius: 15px;
+	min-width: 10rem;
+	padding: 0.6rem 0;
+	margin-top: 0;
+}
+
+
+nav .navbar ul.nav-menu li .nav-user-header {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	border-bottom: rgb(201, 201, 201) 1px solid;
+	padding-bottom: 1rem;
+}
+
+nav .navbar ul.nav-menu li .nav-user-header .nav-user-email {
+	margin: 0.4rem 1rem;
+}
+nav .navbar ul.nav-menu li .nav-user-header .nav-user-email span {
+	font-size: 0.8rem;
+}
+
+nav .navbar ul.nav-menu li .nav-user-header .nav-user-pic {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+	background-color: lightgrey;
+	border-radius: 50%;
+	cursor: pointer;
+	margin: 0.4rem 1rem;
+}
+nav .navbar ul.nav-menu li .nav-user-header .nav-user-pic span {
+	font-size: 2rem;
+}
+
+nav .navbar ul.nav-menu li .nav-user-header .nav-user-name {
+	margin: 0.4rem 1rem;
+}
+nav .navbar ul.nav-menu li .nav-user-header .nav-user-name span {
+	font-size: 1.2rem;
+}

@@ -1,0 +1,22 @@
+
+/*	Copyright (C) 2023, All Rights Reserved
+ *	Written by Juan Carlos Labrandero <jcharly@labrandero.com>
+ */
+
+
+nav .navbar ul.nav-menu li .nav-user-menu-visible ul.nav-user-options {
+	list-style-type: none;
+	padding: 1rem 0 0.5rem 0;
+	margin: 0;
+}
+
+nav .navbar ul.nav-menu li .nav-user-menu-visible ul.nav-user-options li .nav-user-link {
+	display: block;
+	color: #5C5C5C;
+	font-size: 0.9rem;
+	font-weight: normal;
+	padding: 0.6rem 2rem;
+}
+nav .navbar ul.nav-menu li .nav-user-menu-visible ul.nav-user-options li .nav-user-link:hover {
+	background-color: #5c5c5c41;
+}

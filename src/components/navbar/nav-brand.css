@@ -1,0 +1,11 @@
+
+/*	Copyright (C) 2023, All Rights Reserved
+ *	Written by Juan Carlos Labrandero <jcharly@labrandero.com>
+ */
+
+
+nav .navbar ul.nav-menu li .nav-brand {
+	display: flex;
+	align-items: center;
+	padding: 0 0.6rem;
+}
