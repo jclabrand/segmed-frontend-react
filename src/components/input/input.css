@@ -1,0 +1,52 @@
+
+/*	Copyright (C) 2023, All Rights Reserved
+ *	Written by Juan Carlos Labrandero <jcharly@labrandero.com>
+ */
+
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.6rem;
+}
+
+.input-group label {
+	order: -1;
+	margin-bottom: 0.3rem;
+	font-size: 13px;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number] {
+	border: 1px solid #b1b8c5;
+	border-radius: 6px;
+	padding: 0 0.6rem;
+	outline: none;
+	font-size: 1rem;
+	height: 34px;
+	font-size: 14px;
+}
+
+
+button,
+input[type=submit] {
+	border: none;
+	border-radius: 8px;
+	background-color: rgb(26, 95, 186);
+	color: white;
+	height: 34px;
+	font-size: 14px;
+	padding: 0 1rem;
+}
+
+button:hover,
+input[type=submit]:hover {
+	background-color: rgba(26, 95, 186, 0.85);
+}
+
+button:active,
+input[type=submit]:active {
+	background-color: rgb(19, 80, 159);
+}

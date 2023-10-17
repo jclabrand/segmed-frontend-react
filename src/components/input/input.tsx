@@ -4,6 +4,9 @@
  */
 
 
+import './input.css'
+
+
 type InputProps = {
 	name: string
 	type: string
@@ -12,7 +15,7 @@ type InputProps = {
 
 function Input({ name, type, label }: InputProps) {
 	return (
-		<div>
+		<div className='input-group'>
 			<input type={ type } name={ name }/>
 			{ label && <label htmlFor={ name }>{ label }</label>}
 		</div>
