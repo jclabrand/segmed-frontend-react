@@ -1,0 +1,55 @@
+
+/*	Copyright (C) 2023, All Rights Reserved
+ *	Written by Juan Carlos Labrandero <jcharly@labrandero.com>
+ */
+
+
+dialog.dialog {
+	border: none;
+	border-radius: 10px;
+	max-width: 90%;
+}
+dialog.dialog::backdrop {
+	background-color: rgba(10, 10, 10, 0.6);
+}
+
+dialog.dialog .dialog-header {
+	display: flex;
+}
+dialog.dialog .dialog-header h4 {
+	margin: 0.5rem 0;
+}
+
+dialog.dialog .dialog-content {
+	padding: 1rem 0 0.2rem 0;
+}
+
+dialog.dialog .dialog-footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: right;
+	margin-top: 1.2rem;
+}
+
+dialog.dialog .dialog-footer .dialog-cancel {
+	margin-right: 0.5rem;
+	background-color: rgb(237, 237, 237);
+	color: rgb(59, 59, 59);
+	border: 1px solid #b1b8c5;
+}
+dialog.dialog .dialog-footer .dialog-cancel:hover {
+	background-color: rgb(208, 208, 208);
+}
+dialog.dialog .dialog-footer .dialog-cancel:active {
+	background-color: rgb(187, 187, 187);
+}
+
+dialog.dialog .dialog-footer .dialog-error-action {
+	background-color: rgb(222, 28, 28);
+}
+dialog.dialog .dialog-footer .dialog-error-action:hover {
+	background-color: rgba(222, 28, 28, 0.85);
+}
+dialog.dialog .dialog-footer .dialog-error-action:active {
+	background-color: rgb(193, 21, 21);
+}
