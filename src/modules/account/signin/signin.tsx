@@ -7,9 +7,11 @@
 import { useState } from 'react'
 import { gql, useMutation, ApolloError } from '@apollo/client'
 
-import { Form, Input } from '../../../components'
+import { ErrorDialog, Form, Input, Loader } from '../../../components'
 import { setAuth } from '../../../app/client'
 import { Error } from '../../../utils'
+
+import './signin.css'
 
 
 interface ISignInData {
@@ -43,7 +45,7 @@ function SignIn() {
 	const { loading, error, onSubmit } = useSignIn()
 
 	return (
-		<div>
+		<div className='signin'>
 			<Form<ISignInData> onSubmit={ onSubmit }>
 				<div className='signin-header'>
 
@@ -59,8 +61,8 @@ function SignIn() {
 				</div>
 			</Form>
 
-			{ loading && <div>Loading...</div>}
-			{ error.has && <div>{ error.message }</div>}
+			<Loader show={ loading }/>
+			<ErrorDialog error={ error } />
 		</div>
 	)
 }

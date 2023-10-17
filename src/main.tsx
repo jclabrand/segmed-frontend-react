@@ -4,7 +4,6 @@
  */
 
 
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache, concat, split } from '@apollo/client'
@@ -61,11 +60,11 @@ function main() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<ApolloProvider client={ main().client }>
-				<App/>
-			</ApolloProvider>
-		</BrowserRouter>
-	</React.StrictMode>
+	// <React.StrictMode>
+	<BrowserRouter>
+		<ApolloProvider client={ main().client }>
+			<App/>
+		</ApolloProvider>
+	</BrowserRouter>
+	// </React.StrictMode>
 )

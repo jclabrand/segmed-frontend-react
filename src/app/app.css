@@ -1,0 +1,61 @@
+
+body {
+	margin: 0;
+
+	font-family: ui-sans-serif, sans-serif;
+}
+
+header {
+	height: 46px;
+}
+
+.workspace-flat,
+.workspace-split {
+	display: grid;
+}
+.workspace-split {
+	grid-template-columns: 16rem 1fr;
+	animation: split-keyframes 0.3s;
+}
+.workspace-flat {
+	grid-template-columns: 0rem 1fr;
+	animation: flat-keyframes 0.3s;
+}
+
+.workspace-split aside {
+	overflow: auto;
+}
+.workspace-flat aside {
+	overflow: hidden;
+}
+
+main {
+	margin: 1rem;
+	overflow: auto;
+}
+
+@keyframes split-keyframes {
+	0% {
+		grid-template-columns: 0rem 1fr;
+	}
+	100% {
+		grid-template-columns: 16rem 1fr;
+	}
+}
+
+@keyframes flat-keyframes {
+	0% {
+		grid-template-columns: 16rem 1fr;
+	}
+	100% {
+		grid-template-columns: 0rem 1fr;
+	}
+}
+
+p {
+	font-size: 14px;
+}
+
+.segmed-brand {
+	color: white;
+}

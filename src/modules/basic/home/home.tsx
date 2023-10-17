@@ -7,7 +7,7 @@
 function Home() {
 	return (
 		<div>
-			<h3>Inicio</h3>
+			<h3>Seguro Medico</h3>
 		</div>
 	)
 }

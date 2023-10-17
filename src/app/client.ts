@@ -28,9 +28,11 @@ export function setAuth(data: { bearer: string, token: string }) {
 
 export function getDefaultUser(): TUser {
 	return {
+		id: '',
 		userName: 'guest',
 		displayName: '',
 		email: '',
+		status: true,
 		isAuthorized: false
 	}
 }
