@@ -4,14 +4,22 @@
  */
 
 
+export type TRole = {
+	id:				string
+	name:			string
+	description?:	string
+}
+
 export type TUser = {
 	id:				string
 	userName:		string
 	displayName?:	string
 	email?:			string
+	active:			boolean
 
 	isAuthorized:	boolean
 }
+
 
 export type TSubscriptionData<TSubscriptionResult> = {
 	subscriptionData: {
