@@ -1,0 +1,24 @@
+
+/*	Copyright (C) 2023, All Rights Reserved
+ *	Written by Juan Carlos Labrandero <jcharly@labrandero.com>
+ */
+
+
+.sidenav-menu a {
+	display: block;
+	padding: 0.6rem 1rem;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 6px;
+}
+.sidenav-menu a:hover {
+	background-color: #5c5c5c27;
+}
+
+.sidenav-menu ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
