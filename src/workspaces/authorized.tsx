@@ -4,14 +4,17 @@
  */
 
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { gql, useMutation, useReactiveVar, ApolloError } from '@apollo/client'
 
 import { Error } from '../utils'
 import { authState, userState, setAuth, getDefaultUser } from '../app/client'
+import { Loader, NavAction, NavBar, NavBrand, NavMenu, NavUser, NavUserAction, NavUserLink, SideNav, SideNavMenu, SideNavLink } from '../components'
 import { Home, NotFound } from '../modules/basic'
-import { Users } from '../modules/settings'
+import { Roles, Users } from '../modules/settings'
+
+import { IconMenu } from '../components/icons'
 
 
 function useAuthorized() {
@@ -23,6 +26,7 @@ function useAuthorized() {
 
 	const user = useReactiveVar(userState)
 		, auth = useReactiveVar(authState)
+		, mainRef = useRef<HTMLDivElement>(null)
 
 	const [ error, setError ] = useState<Error>(new Error())
 
@@ -35,38 +39,70 @@ function useAuthorized() {
 	const [ serverSignOut, { loading } ] = useMutation(SIGNOUT, { onCompleted, onError })
 
 	const signOut = () => serverSignOut({ variables: { bearer: auth.bearer } })
+		, toggleSide = () => {
+			if (mainRef.current) mainRef.current.className = mainRef.current.className === 'workspace-flat' ? 'workspace-split' : 'workspace-flat'
+		}
 
-	return { loading, error, user, signOut }
+	return { loading, error, user, signOut, toggleSide, mainRef }
 }
 
 function Authorized() {
-	const { loading, error, user, signOut } = useAuthorized()
+	const { loading, error, user, signOut, toggleSide, mainRef } = useAuthorized()
 
 	return (
 		<>
 			<header>
-
+				<NavBar>
+					<NavMenu>
+						<NavAction action={ toggleSide }>
+							<IconMenu/>
+						</NavAction>
+						<NavBrand>
+							<h4 className='segmed-brand'>Seguro Médico - SEGMED</h4>
+						</NavBrand>
+					</NavMenu>
+					<NavMenu>
+						<NavUser user={ user }>
+							<NavUserLink to='/' text='Configurar cuenta'/>
+							<NavUserAction action={ signOut } text='Cerrar sesión'/>
+						</NavUser>
+					</NavMenu>
+				</NavBar>
 			</header>
-			<main>
-				<div>
-					{ user.displayName }
-				</div>
-				
-				<button onClick={ signOut }>Cerrar sesión</button>
+			<div ref={ mainRef } className='workspace-split'>
+				<aside>
+					<SideNav>
+						<SideNavMenu text='Configuración'>
+							<SideNavLink text='Roles' to='/configuracion/roles'/>
+							<SideNavLink text='Usuarios' to='/configuracion/usuarios'/>
+						</SideNavMenu>
+						<SideNavMenu text='Parámetros'>
+							<SideNavLink text='Beneficiarios' to='/'/>
+							<SideNavLink text='Proveedores' to='/'/>
+						</SideNavMenu>
+						<SideNavMenu text='Servicios'>
+							<SideNavLink text='Farmacia' to='/'/>
+							<SideNavLink text='Consultorio' to='/'/>
+						</SideNavMenu>
+					</SideNav>
+				</aside>
+				<main>
+					<Routes>
+						<Route path="/" element={ <Home/> } />
 
-				<Routes>
-					<Route path="/" element={ <Home/> } />
+						<Route path="configuracion">
+							<Route path="roles" element={ <Roles/> } />
+							<Route path="usuarios" element={ <Users/> } />
+						</Route>
 
-					<Route path="configuracion">
-						<Route path="usuarios" element={ <Users/> } />
-					</Route>
+						<Route path="*" element={ <NotFound/> } />
+					</Routes>
 
-					<Route path="*" element={ <NotFound/> } />
-				</Routes>
+					<Loader show={loading}/>
 
-				{ loading && <div>Loading...</div>}
-				{ error.has && <div>{ error.message }</div>}
-			</main>
+					{ error.has && <div>{ error.message }</div>}
+				</main>
+			</div>
 		</>
 	)
 }
