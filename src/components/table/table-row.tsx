@@ -14,6 +14,7 @@ export interface TableCellCallback<TData> {
 type TableRowProps<TData> = {
 	rows:	TableCellCallback<TData>[]
 	item:	TData
+	index:	number
 }
 
 function useTableRow() {
@@ -50,7 +51,7 @@ export function TableRow<TData>(props: TableRowProps<TData>) {
 				{
 					visible
 						? props.rows.map((cell, j) => {
-							return (<td key={j}>{ cell(props.item, j) }</td>)
+							return (<td key={j}>{ cell(props.item, props.index) }</td>)
 						})
 						: <td></td>
 				}

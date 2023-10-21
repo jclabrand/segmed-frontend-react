@@ -28,7 +28,7 @@ function Table<TData>(props: TableProps<TData>) {
 					</tr>
 				</thead>
 				
-				{ props.dataset.map((item, i) => (<TableRow<TData> key={i} item={item} rows={props.rows}/>)) }
+				{ props.dataset.map((item, i) => (<TableRow<TData> key={i} index={i} item={item} rows={props.rows}/>)) }
 
 			</table>
 		</div>
