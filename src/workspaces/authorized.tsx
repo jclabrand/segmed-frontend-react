@@ -13,6 +13,8 @@ import { authState, userState, setAuth, getDefaultUser } from '../app/client'
 import { Loader, NavAction, NavBar, NavBrand, NavMenu, NavUser, NavUserAction, NavUserLink, SideNav, SideNavMenu, SideNavLink } from '../components'
 import { Home, NotFound } from '../modules/basic'
 import { Roles, Users } from '../modules/settings'
+import { Suppliers } from '../modules/parameters'
+import { SupplierServiceTypes } from '../modules/options'
 
 import { IconMenu } from '../components/icons'
 
@@ -76,9 +78,12 @@ function Authorized() {
 							<SideNavLink text='Roles' to='/configuracion/roles'/>
 							<SideNavLink text='Usuarios' to='/configuracion/usuarios'/>
 						</SideNavMenu>
+						<SideNavMenu text='Opciones'>
+							<SideNavLink text='Tipos de sercicios proveedores' to='/opciones/tipos-sercicios-proveedores'/>
+						</SideNavMenu>
 						<SideNavMenu text='Parámetros'>
+							<SideNavLink text='Proveedores' to='/parametros/proveedores'/>
 							<SideNavLink text='Beneficiarios' to='/'/>
-							<SideNavLink text='Proveedores' to='/'/>
 						</SideNavMenu>
 						<SideNavMenu text='Servicios'>
 							<SideNavLink text='Farmacia' to='/'/>
@@ -93,6 +98,14 @@ function Authorized() {
 						<Route path="configuracion">
 							<Route path="roles" element={ <Roles/> } />
 							<Route path="usuarios" element={ <Users/> } />
+						</Route>
+
+						<Route path='opciones'>
+							<Route path='tipos-sercicios-proveedores' element={ <SupplierServiceTypes/> } />
+						</Route>
+
+						<Route path='parametros'>
+							<Route path='proveedores' element={ <Suppliers/> } />
 						</Route>
 
 						<Route path="*" element={ <NotFound/> } />
