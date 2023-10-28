@@ -1,17 +1,13 @@
 
 import { useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
-import { IconAdd } from '../../../components/icons'
+import { IconAdd, IconEdit, IconMenu } from '../../../components/icons'
 
 import { Loader, ErrorDialog, Table, ToolBar, ToolBarMenu, ToolBarAction, ToolBarSearch } from '../../../components'
 import { useError } from '../../../hooks'
 import SupplierServiceUpsert from './supplier-service-upsert'
+import { TSupplierServiceType } from './types'
 
-
-type TSupplierServiceType = {
-	id:		string
-	name:	string
-}
 
 function useSupplierServiceTypes() {
 	const SUPPLIER_SERVICE_TYPES = gql`
@@ -22,39 +18,53 @@ function useSupplierServiceTypes() {
 			}
 		`
 
-	const [ error, onError ] = useError(), [ upsert, setUpsert ] = useState(false)
+	const [ error, onError ] = useError()
+		, [ upsert, setUpsert ] = useState('')
+		, [ updateData, setUpdateData ] = useState<TSupplierServiceType | null>(null)
 
 	const { loading, data } = useQuery<{ supplierServiceTypes: Array<TSupplierServiceType> }>(SUPPLIER_SERVICE_TYPES, { onError })
 	
-	const openUpsert = () => setUpsert(true)
-		, closeUpsert = () => setUpsert(false)
+	const openUpsert = (option: string, row: TSupplierServiceType | null) => () => {
+			setUpsert(option)
+			setUpdateData(row)
+		}
+		, closeUpsert = () => setUpsert('')
 
-	return { loading, dataset: data?.supplierServiceTypes || [], error, upsert, openUpsert, closeUpsert }
+	return { loading, dataset: data?.supplierServiceTypes || [], error, upsert, openUpsert, closeUpsert, updateData }
 }
 
 function SupplierServiceTypes() {
-	const { loading, error, dataset, upsert, openUpsert, closeUpsert } = useSupplierServiceTypes()
+	const { loading, error, dataset, upsert, openUpsert, closeUpsert, updateData } = useSupplierServiceTypes()
 
 	return (
 		<div>
 			<h2>Tipos de Servicio - Proveedores</h2>
 			<div>
-			<ToolBar>
+				<ToolBar>
 					<ToolBarMenu>
-                        <ToolBarSearch onSearch={ ()=>{} }/>
+						<ToolBarSearch onSearch={ ()=>{} }/>
 					</ToolBarMenu>
 					<ToolBarMenu>
-						<ToolBarAction action={ openUpsert }>
-							<IconAdd></IconAdd>
+						<ToolBarAction action={ openUpsert('insert', null) }>
+							<IconAdd/>
 						</ToolBarAction>
 					</ToolBarMenu>
 				</ToolBar>
 			</div>
 			<div>
 				<Table<TSupplierServiceType>
-					columns={['No', 'Nombre']}
+					columns={['No', 'Nombre', 'opciones']}
 					rows={[
-						(_, i) => i + 1, r => r.name
+						(_, i) => i + 1,
+						r => r.name,
+						r => <div>
+							<button type='button' className='table-btn' onClick={ openUpsert('update', r) }>
+								<IconEdit/>
+							</button>
+							<button type='button' className='table-btn' onClick={ openUpsert('delete', r) }>
+								<IconMenu/>
+							</button>
+						</div>
 					]}
 					dataset={ dataset }
 				>
@@ -63,7 +73,7 @@ function SupplierServiceTypes() {
 
 			<Loader show={loading}/>
 			<ErrorDialog error={ error }/>
-			<SupplierServiceUpsert open={ upsert } onClose={ closeUpsert } />
+			<SupplierServiceUpsert open={ upsert } data={ updateData } onClose={ closeUpsert } />
 		</div>
 	)
 }

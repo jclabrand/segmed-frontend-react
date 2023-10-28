@@ -36,3 +36,21 @@
 	font-size: 14px;
 	font-weight: normal;
 }
+
+
+.table-btn {
+	border-radius: 50%;
+	background-color: white;
+	padding: 0;
+	width: 30px;
+	height: 30px;
+}
+
+.table-btn svg {
+	width: 20px;
+}
+
+.table-btn:hover svg {
+	width: 20px;
+	fill: orange;
+}

@@ -5,9 +5,11 @@
 
 
 import IconAdd from './icon-add'
+import IconEdit from './icon-edit'
 import IconMenu from './icon-menu'
 
 export {
 	IconAdd,
+	IconEdit,
 	IconMenu
 }
