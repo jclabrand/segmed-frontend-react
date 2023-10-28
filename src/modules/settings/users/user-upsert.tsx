@@ -2,7 +2,7 @@
 import { gql, useMutation } from '@apollo/client'
 
 import { Dialog, DialogContent, DialogFooter, DialogHeader, ErrorDialog, Form, Input, Loader } from '../../../components'
-import { useError } from '../../../hooks'
+import { useError, useValidators } from '../../../hooks'
 
 import './user-upsert.css'
 
@@ -28,6 +28,7 @@ function useUserUpsert(props: UserUpsertProps) {
 	const [ create, { loading: creating } ] = useMutation(CREATE, { onCompleted: () => close(), onError })
 
 	const submit = (data: IUserInput) => {
+			console.log(data)
 			create({ variables: { data }})
 		}
 		, close = () => props.onClose?.()
@@ -38,6 +39,7 @@ function useUserUpsert(props: UserUpsertProps) {
 
 function UserUpsert(props: UserUpsertProps) {
 	const { error, creating, submit, close } = useUserUpsert(props)
+		, { notEmptyString } = useValidators()
 
 	return (
 		<div>
@@ -45,7 +47,7 @@ function UserUpsert(props: UserUpsertProps) {
 				<Form<IUserInput> onSubmit={ submit }>
 					<DialogHeader title='Crear usuario'/>
 					<DialogContent visible={ props.open }>
-						<Input type='text' name='userName' label='Nombre de usuario'/>
+						<Input type='text' name='userName' label='Nombre de usuario' validate={[ notEmptyString() ]}/>
 						<Input type='text' name='displayName' label='Nombre para mostrar'/>
 						<Input type='email' name='email' label='Correo electrónico'/>
 					</DialogContent>
