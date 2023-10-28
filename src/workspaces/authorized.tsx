@@ -14,9 +14,10 @@ import { Loader, NavAction, NavBar, NavBrand, NavMenu, NavUser, NavUserAction, N
 import { Home, NotFound } from '../modules/basic'
 import { Roles, Users } from '../modules/settings'
 import { Suppliers } from '../modules/parameters'
-import { SupplierServiceTypes } from '../modules/options'
+import { SupplierServiceTypes, SupplierSpecialtyTypes } from '../modules/options'
 
 import { IconMenu } from '../components/icons'
+//import SupplierSpecialtyTypes from '../modules/options/supplier-specialty-types/supplier-specialty-types'
 
 
 function useAuthorized() {
@@ -80,6 +81,7 @@ function Authorized() {
 						</SideNavMenu>
 						<SideNavMenu text='Opciones'>
 							<SideNavLink text='Tipos de sercicios proveedores' to='/opciones/tipos-sercicios-proveedores'/>
+							<SideNavLink text='Tipos de especialidades proveedores' to='/opciones/tipos-especialidades-proveedores'/>
 						</SideNavMenu>
 						<SideNavMenu text='Parámetros'>
 							<SideNavLink text='Proveedores' to='/parametros/proveedores'/>
@@ -102,6 +104,8 @@ function Authorized() {
 
 						<Route path='opciones'>
 							<Route path='tipos-sercicios-proveedores' element={ <SupplierServiceTypes/> } />
+							<Route path='tipos-especialidades-proveedores' element={ <SupplierSpecialtyTypes/> } />
+							
 						</Route>
 
 						<Route path='parametros'>
