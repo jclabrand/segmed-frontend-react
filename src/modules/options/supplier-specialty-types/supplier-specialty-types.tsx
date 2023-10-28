@@ -2,44 +2,42 @@
 import { useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import { IconAdd } from '../../../components/icons'
-
 import { Loader, ErrorDialog, Table, ToolBar, ToolBarMenu, ToolBarAction, ToolBarSearch } from '../../../components'
 import { useError } from '../../../hooks'
-import SupplierServiceUpsert from './supplier-service-upsert'
+import SupplierSpecialtyUpsert from './supplier-specialty-upsert'
 
-
-type TSupplierServiceType = {
+type TSupplierSpecialtyType = {
 	id:		string
 	name:	string
 }
 
-function useSupplierServiceTypes() {
-	const SUPPLIER_SERVICE_TYPES = gql`
-			query SupplierServiceTypes {
-				supplierServiceTypes {
-					id name
-				}
-			}
+function useSupplierSpecialtyTypes() {
+	const SUPPLIER_SPECIALTY_TYPES = gql`
+        query SupplierSpecialtyTypes {
+            supplierSpecialtyTypes {
+            id name  
+            }
+      }
 		`
 
 	const [ error, onError ] = useError(), [ upsert, setUpsert ] = useState(false)
 
-	const { loading, data } = useQuery<{ supplierServiceTypes: Array<TSupplierServiceType> }>(SUPPLIER_SERVICE_TYPES, { onError })
+	const { loading, data } = useQuery<{ supplierSpecialtyTypes: Array<TSupplierSpecialtyType> }>(SUPPLIER_SPECIALTY_TYPES, { onError })
 	
-	const openUpsert = () => setUpsert(true)
+    const openUpsert = () => setUpsert(true)
 		, closeUpsert = () => setUpsert(false)
 
-	return { loading, dataset: data?.supplierServiceTypes || [], error, upsert, openUpsert, closeUpsert }
+	return { loading, dataset: data?.supplierSpecialtyTypes || [], error, upsert, openUpsert, closeUpsert }
 }
 
-function SupplierServiceTypes() {
-	const { loading, error, dataset, upsert, openUpsert, closeUpsert } = useSupplierServiceTypes()
+function SupplierSpecialtyTypes() {
+	const { loading, dataset, error, openUpsert, upsert, closeUpsert } = useSupplierSpecialtyTypes()
 
 	return (
 		<div>
-			<h2>Tipos de Servicio - Proveedores</h2>
+			<h2>Tipos de Especialidades - Proveedores</h2>
 			<div>
-			<ToolBar>
+				<ToolBar>
 					<ToolBarMenu>
                         <ToolBarSearch onSearch={ ()=>{} }/>
 					</ToolBarMenu>
@@ -51,7 +49,7 @@ function SupplierServiceTypes() {
 				</ToolBar>
 			</div>
 			<div>
-				<Table<TSupplierServiceType>
+				<Table<TSupplierSpecialtyType>
 					columns={['No', 'Nombre']}
 					rows={[
 						(_, i) => i + 1, r => r.name
@@ -63,9 +61,9 @@ function SupplierServiceTypes() {
 
 			<Loader show={loading}/>
 			<ErrorDialog error={ error }/>
-			<SupplierServiceUpsert open={ upsert } onClose={ closeUpsert } />
+            <SupplierSpecialtyUpsert open={ upsert } onClose={ closeUpsert } />
 		</div>
 	)
 }
 
-export default SupplierServiceTypes
+export default SupplierSpecialtyTypes
