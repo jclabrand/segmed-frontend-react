@@ -1,0 +1,12 @@
+
+
+.validator div:last-child {
+	display: table-cell;
+	vertical-align: middle;
+	height: 22px;
+}
+
+.validator div:last-child span {
+	font-size: 0.8rem;
+	color: red;
+}
