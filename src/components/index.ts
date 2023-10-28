@@ -28,7 +28,7 @@ import ToolBar from './toolbar/toolbar'
 import ToolBarAction from './toolbar/toolbar-action'
 import ToolBarMenu from './toolbar/toolbar-menu'
 import ToolBarSearch from './toolbar/toolbar-search'
-
+import Validator from './validator/validator'
 
 export {
 	Dialog,
@@ -54,5 +54,6 @@ export {
 	ToolBar,
 	ToolBarAction,
 	ToolBarMenu,
-	ToolBarSearch
+	ToolBarSearch,
+	Validator
 }

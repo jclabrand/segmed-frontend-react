@@ -8,11 +8,13 @@ import useDialog from './dialog'
 import useError from './error'
 import useIntersectOnClick from './intersect-on-click'
 import useFilter from './filter'
+import useValidators from './validators'
 
 
 export {
 	useDialog,
 	useError,
 	useIntersectOnClick,
-	useFilter
+	useFilter,
+	useValidators
 }
