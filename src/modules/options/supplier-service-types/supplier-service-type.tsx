@@ -1,8 +1,12 @@
 
+import { useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
+import { IconAdd } from '../../../components/icons'
 
-import { Loader, ErrorDialog, Table, ToolBar, ToolBarMenu, ToolBarSearch } from '../../../components'
+import { Loader, ErrorDialog, Table, ToolBar, ToolBarMenu, ToolBarAction, ToolBarSearch } from '../../../components'
 import { useError } from '../../../hooks'
+import SupplierServiceUpsert from './supplier-service-upsert'
+
 
 type TSupplierServiceType = {
 	id:		string
@@ -18,23 +22,31 @@ function useSupplierServiceTypes() {
 			}
 		`
 
-	const [ error, onError ] = useError()
+	const [ error, onError ] = useError(), [ upsert, setUpsert ] = useState(false)
 
 	const { loading, data } = useQuery<{ supplierServiceTypes: Array<TSupplierServiceType> }>(SUPPLIER_SERVICE_TYPES, { onError })
 	
-	return { loading, dataset: data?.supplierServiceTypes || [], error }
+	const openUpsert = () => setUpsert(true)
+		, closeUpsert = () => setUpsert(false)
+
+	return { loading, dataset: data?.supplierServiceTypes || [], error, upsert, openUpsert, closeUpsert }
 }
 
 function SupplierServiceTypes() {
-	const { loading, dataset, error } = useSupplierServiceTypes()
+	const { loading, error, dataset, upsert, openUpsert, closeUpsert } = useSupplierServiceTypes()
 
 	return (
 		<div>
-			<h2>Tipos de servicio de los proveedores</h2>
+			<h2>Tipos de Servicio - Proveedores</h2>
 			<div>
-				<ToolBar>
+			<ToolBar>
 					<ToolBarMenu>
-						<ToolBarSearch onSearch={ ()=>{} }/>
+                        <ToolBarSearch onSearch={ ()=>{} }/>
+					</ToolBarMenu>
+					<ToolBarMenu>
+						<ToolBarAction action={ openUpsert }>
+							<IconAdd></IconAdd>
+						</ToolBarAction>
 					</ToolBarMenu>
 				</ToolBar>
 			</div>
@@ -51,6 +63,7 @@ function SupplierServiceTypes() {
 
 			<Loader show={loading}/>
 			<ErrorDialog error={ error }/>
+			<SupplierServiceUpsert open={ upsert } onClose={ closeUpsert } />
 		</div>
 	)
 }
